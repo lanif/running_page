@@ -1,13 +1,13 @@
-import MapboxLanguage from '@mapbox/mapbox-gl-language';
 import React, {useRef, useCallback, useState, useEffect} from 'react';
-import Map, {Layer, Source, FullscreenControl, NavigationControl, MapRef} from 'react-map-gl';
+import Map, {Layer, Source, FullscreenControl, NavigationControl, MapRef} from 'react-map-gl/maplibre';
 import {MapInstance} from "react-map-gl/src/types/lib";
 import useActivities from '@/hooks/useActivities';
 import {
   MAP_LAYER_LIST,
   IS_CHINESE,
   ROAD_LABEL_DISPLAY,
-  MAPBOX_TOKEN,
+  MAP_STYLE,
+  MAP_ACCESS_TOKEN,
   PROVINCE_FILL_COLOR,
   COUNTRY_FILL_COLOR,
   USE_DASH_LINE,
@@ -22,7 +22,7 @@ import RunMapButtons from './RunMapButtons';
 import styles from './style.module.css';
 import { FeatureCollection } from 'geojson';
 import { RPGeometry } from '@/static/run_countries';
-import './mapbox.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import LightsControl from "@/components/RunMap/LightsControl";
 
 interface IRunMapProps {
@@ -61,9 +61,6 @@ const RunMap = ({
     (ref: MapRef) => {
       if (ref !== null) {
         const map = ref.getMap();
-        if (map && IS_CHINESE) {
-            map.addControl(new MapboxLanguage({defaultLanguage: 'zh-Hans'}));
-        }
         // all style resources have been downloaded
         // and the first visually complete rendering of the base style has occurred.
         map.on('style.load', () => {
@@ -145,9 +142,9 @@ const RunMap = ({
       {...viewState}
       onMove={onMove}
       style={style}
-      mapStyle="mapbox://styles/mapbox/dark-v10"
+      mapStyle={MAP_STYLE}
       ref={mapRefCallback}
-      mapboxAccessToken={MAPBOX_TOKEN}
+      mapboxAccessToken={MAP_ACCESS_TOKEN}
     >
       <RunMapButtons changeYear={changeYear} thisYear={thisYear} />
       <Source id="data" type="geojson" data={geoData}>

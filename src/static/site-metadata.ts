@@ -16,21 +16,17 @@ const getBasePath = () => {
 
 const data: ISiteMetadataResult = {
   siteTitle: 'Running Page',
-  siteUrl: 'https://yihong.run',
-  logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTtc69JxHNcmN1ETpMUX4dozAgAN6iPjWalQ&usqp=CAU',
-  description: 'Personal site and blog',
+  siteUrl: 'https://run.lanif.de',
+  logo: 'https://github.com/lanif.png?size=256',
+  description: 'lanif 的个人跑步记录',
   navLinks: [
     {
       name: 'Summary',
       url: `${getBasePath()}/summary`,
     },
     {
-      name: 'Blog',
-      url: 'https://github.com/yihong0618/gitblog',
-    },
-    {
-      name: 'About',
-      url: 'https://github.com/yihong0618/running_page/blob/master/README-CN.md',
+      name: 'GitHub',
+      url: 'https://github.com/lanif/running_page',
     },
   ],
 };
