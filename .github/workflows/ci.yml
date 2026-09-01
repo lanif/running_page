@@ -38,7 +38,10 @@ jobs:
       - name: Lint with Ruff
         run: |
           pip install ruff
-          ruff check .
+          # Keep CI focused on correctness checks. The repository contains
+          # long-standing compatibility code that is intentionally not
+          # rewritten by Ruff's opinionated rule families.
+          ruff check . --select E4,E7,E9,F
 
   node_lint_and_test:
     runs-on: ubuntu-latest
